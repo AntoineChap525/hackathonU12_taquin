@@ -4,6 +4,8 @@ import os
 import random
 
 
+ 
+
 def main(page: ft.Page):
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
@@ -30,6 +32,22 @@ def main(page: ft.Page):
     page.update()
     page.add(ft.Stack(r,height=330,width=330))
     page.add(ft.Row(controls=[ft.IconButton(ft.icons.NOT_STARTED_OUTLINED)]))
+
+
+#on donne les positions initiales à la fonction solveur qui renvoie les positions successives 
+    positions_successives = [] #liste des positions successives des cases
+
+#on affiche chacune des positions successives des cases via flet
+    for i in range(len(positions_successives)):
+        r = []
+        for j in range(9):
+            if positions_successives[i][j]==0:
+                c=ft.Container(ft.Text(positions_successives[i][j]),width=100, height=100, bgcolor="red", top=lis[j][0], left=lis[j][1])
+            else :
+                c=ft.Container(ft.Text(positions_successives[i][j]),width=100, height=100, bgcolor="blue", top=lis[j][0], left=lis[j][1])
+            r.append(c) 
+    
+
 
     page.update()
 

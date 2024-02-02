@@ -16,6 +16,8 @@ def concatene(liste):
 
 print(concatene([[1, 2, 3], [4, 0, 5], [6, 7, 8]]))
 
+
+
 def concatene9(liste):
     chaine = ""
     for i in range(len(liste)):
