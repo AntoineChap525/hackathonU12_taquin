@@ -36,5 +36,3 @@ def neighbours(taquin, coord):
         except ZeroDivisionError:
             pass
     return neigh
-
-print(neighbours([[1, 0, 2], [3, 8, 4], [5, 6, 7]], (0, 1)))
