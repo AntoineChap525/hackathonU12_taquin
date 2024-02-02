@@ -6,7 +6,6 @@ import find_neighbours
 start = ("087654321", (0, 0))
 solution = ("123456780", (2, 2))
 
-
 def manhattan_cost(taquin: str, solution: str):
     taquin = convert.from_str_to_tab(taquin)
     solution = convert.from_str_to_tab(solution)
