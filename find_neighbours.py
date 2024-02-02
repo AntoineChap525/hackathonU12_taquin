@@ -11,10 +11,12 @@ def from_str_to_tab(string):
     n = int(sqrt(len(string)))
     tab = [[None]*n for _ in range(n)]
     for j in range(n):
-        tab[i][j] = string[n*i + j]
+        for i in range(n):
+            tab[i][j] = string[n*i + j]
     return tab
 
 def neighbours(taquin, coord):
+    taquin = from_str_to_tab(taquin)
     i, j = coord
     neigh = []
     for s in [-1, 1]:
