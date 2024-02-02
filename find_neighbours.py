@@ -20,20 +20,18 @@ def neighbours(taquin, coord):
     i, j = coord
     neigh = []
     for s in [-1, 1]:
-        taqu2 = [row[:] for row in taquin]  # Utilisez cette approche pour créer une copie complète
+        taqu2 = [row[:] for row in taquin]
         try:
             a = 1 / (i + s + 1)
             taqu2[i + s][j], taqu2[i][j] = taqu2[i][j], taqu2[i + s][j]
-            print(taqu2)
             neigh.append(from_tab_to_str(taqu2))
         except ZeroDivisionError:
             pass
     for s in [-1, 1]:
-        taqu2 = [row[:] for row in taquin]  # Utilisez cette approche pour créer une copie complète
+        taqu2 = [row[:] for row in taquin]
         try:
             a = 1 / (j + s + 1)
             taqu2[i][j + s], taqu2[i][j] = taqu2[i][j], taqu2[i][j + s]
-            print(taqu2)
             neigh.append(from_tab_to_str(taqu2))
         except ZeroDivisionError:
             pass
