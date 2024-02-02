@@ -10,19 +10,16 @@ solution = ("123456780", (2, 2))
 def manhattan_cost(taquin: str, solution: str):
     taquin = convert.from_str_to_tab(taquin)
     solution = convert.from_str_to_tab(solution)
-
-    position_solution = {}
-    n = len(solution)
-    for i in range(n):
-        for j in range(n):
-            position_solution[solution[i][j]] = (i, j)
-
+    n = len(taquin)
     distance = 0
     for i in range(n):
         for j in range(n):
-            correct_position = position_solution[taquin[i][j]]
-            distance += abs(i - correct_position[0]) + abs(j - correct_position[1])
-
+            val = int(taquin[i][j])
+            if val != 0:
+                i0,j0 = (val-1) // n, (val-1) % n
+                distance += abs(i-i0)+abs(j-j0)
+            else:
+                distance += abs(i-n+1)+abs(j-n+1)
     return distance
 
 
@@ -82,3 +79,4 @@ def display(path):
         print("####")
 
 
+print(solve(start,solution))
