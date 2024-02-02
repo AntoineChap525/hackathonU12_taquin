@@ -82,5 +82,3 @@ def display(path):
         print("####")
 
 
-path = solve(start, solution)
-display(path)
