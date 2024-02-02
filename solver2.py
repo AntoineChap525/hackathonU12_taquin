@@ -36,11 +36,11 @@ def solve(start):
         if not nodes[actual_node][1]:  # if not dealt
             neighbours = find_neighbours.neighbours(actual_node[0], actual_node[1])
             for neighbour in neighbours:
-                if not neighbour in nodes:
-                    nodes[neighbour] = (nodes[actual_node][0] + 1, False, actual_node)
+                if (not neighbour in nodes) or neighbour[0] == solution[0]:
+                    nodes[neighbour] = [nodes[actual_node][0] + 1, False, actual_node]
                     queue.append(neighbour)
-                if nodes[neighbour][0] > nodes[actual_node][0] + 1:
-                    nodes[neighbour][0] = nodes[actual_node][0] + 1
+                #if nodes[neighbour][0] > nodes[actual_node][0] + 1:
+                #    nodes[neighbour][0] = nodes[actual_node][0] + 1
             nodes[actual_node][1] = True  # dealt node
 
     # Find path
