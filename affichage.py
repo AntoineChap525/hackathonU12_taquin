@@ -4,7 +4,7 @@ import os
 import random
 import solver2
 import op_surlistes
-
+import is_possible
 
 
 
@@ -46,7 +46,10 @@ def main(page: ft.Page):
     #on mélange la liste
     liste=[0,1,2,3,4,5,6,7,8]
     random.shuffle(liste)
-    r = []
+    while (is_possible.is_possible(op_surlistes.from_list_to_tab(liste), (liste.index(0)//3, liste.index(0)%3))) == False:
+        random.shuffle(liste)
+        print("C'est impossible")
+
 
 
     r = []
@@ -63,13 +66,17 @@ def main(page: ft.Page):
     page.update()
     page.add(ft.Stack(r,height=330,width=330))
     page.add(ft.Row(controls=[ft.IconButton(ft.icons.NOT_STARTED_OUTLINED)]))
-
     page.update()
 
+
+
+    
 #on donne les positions initiales à la fonction solveur qui renvoie les positions successives 
     print(op_surlistes.concatene(liste))
     print(solver2.solution)
     positions_successives = solver2.solve(op_surlistes.concatene(liste),solver2.solution) #liste des positions successives des cases
+    print(positions_successives)
+
 
     for i in range(len(positions_successives)-1):
         num,pos_init,pos_fin=op_surlistes.swap(positions_successives[i],positions_successives[i+1])
