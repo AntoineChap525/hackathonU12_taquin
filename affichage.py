@@ -4,6 +4,8 @@ import os
 import random
 
 
+ 
+
 def main(page: ft.Page):
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
@@ -32,9 +34,7 @@ def main(page: ft.Page):
     page.update()
     page.add(ft.Stack(r,height=330,width=330))
     page.add(ft.Row(controls=[ft.IconButton(ft.icons.NOT_STARTED_OUTLINED)]))
-    anim(liste,r,1,1,0)
-    
-    
+
     page.update()
 
 
