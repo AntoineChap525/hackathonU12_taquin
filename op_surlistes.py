@@ -44,3 +44,11 @@ def recherche(liste,element):
             return i
     return ("Erreur")
 
+#fonction qui prend en argument une liste de taille 9 et la renvoie sous forme de liste de listes de taille 3*3
+
+def from_list_to_tab(liste):
+    tab = []
+    for i in range(0, 9, 3):
+        tab.append(liste[i:i+3])
+    return tab
+
