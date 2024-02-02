@@ -18,14 +18,6 @@ import is_possible
 #list_container est la liste des containers
 
 
-def anim(lis_num,list_container,num,pos_list,pos_list_0):
-    x0,y0=pos_list_0%3,pos_list_0//3
-    x,y=pos_list%3,pos_list//3
-    n0=op_surlistes.recherche(list_num,0)
-    n=op_surlistes.recherche(list_num,num)
-    list_container[n0]=ft.Container(ft.Text(0, text_align=ft.TextAlign.CENTER), width=100, height=100, bgcolor="red", top=x*110, left=y*110)
-    list_container[n]=ft.Container(ft.Text(num, text_align=ft.TextAlign.CENTER), width=100, height=100, bgcolor="blue", top=x0*110, left=y0*110)
-    page.add(ft.Stack(r,height=330,width=330))
 
 
 
@@ -33,6 +25,19 @@ def anim(lis_num,list_container,num,pos_list,pos_list_0):
  
 
 def main(page: ft.Page):
+    
+    def anim(list_num,list_container,num,pos_list,pos_list_0):
+        x0,y0=int(pos_list_0%3),int(pos_list_0//3)
+        x,y=int(pos_list%3),int(pos_list//3)
+        n0=op_surlistes.recherche(list_num,0)
+        n=op_surlistes.recherche(list_num,int(num))
+        list_container[n0].left = 110*x
+        list_container[n0].top = 110*y
+        list_container[n].left = 110*x0
+        list_container[n].top = 110*y0
+        page.update()
+
+    
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     t = ft.Text(value="Jeu de Taquin", color="red")
@@ -63,27 +68,25 @@ def main(page: ft.Page):
         r.append(c)
 
 
-    page.update()
     page.add(ft.Stack(r,height=330,width=330))
     page.add(ft.Row(controls=[ft.IconButton(ft.icons.NOT_STARTED_OUTLINED)]))
     page.update()
+    print(r)
 
 
 
     
 #on donne les positions initiales à la fonction solveur qui renvoie les positions successives 
-    print(op_surlistes.concatene(liste))
-    print(solver2.solution)
     positions_successives = solver2.solve(op_surlistes.concatene(liste),solver2.solution) #liste des positions successives des cases
-    print(positions_successives)
+
 
 
     for i in range(len(positions_successives)-1):
+        print(positions_successives[i])
         num,pos_init,pos_fin=op_surlistes.swap(positions_successives[i],positions_successives[i+1])
         anim(liste,r,num,pos_init,pos_fin)
         time.sleep(1)
         page.update()
-
 
 
 
