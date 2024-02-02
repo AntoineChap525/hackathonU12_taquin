@@ -38,6 +38,24 @@ def main(page: ft.Page):
     page.update()
 
 
+#on donne les positions initiales à la fonction solveur qui renvoie les positions successives 
+    positions_successives = [] #liste des positions successives des cases
+
+#on affiche chacune des positions successives des cases via flet
+    for i in range(len(positions_successives)):
+        r = []
+        for j in range(9):
+            if positions_successives[i][j]==0:
+                c=ft.Container(ft.Text(positions_successives[i][j]),width=100, height=100, bgcolor="red", top=lis[j][0], left=lis[j][1])
+            else :
+                c=ft.Container(ft.Text(positions_successives[i][j]),width=100, height=100, bgcolor="blue", top=lis[j][0], left=lis[j][1])
+            r.append(c)
+
+
+
+
+
+
 def recherche(liste,element):
     for i in range(len(liste)):
         if liste[i]==element:
