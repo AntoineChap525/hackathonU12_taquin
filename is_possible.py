@@ -17,7 +17,7 @@ def is_possible(taquin0,coord):
 
             while not seen[index]:
                 seen[index] = True
-                index = taquin[index]
+                index = int(taquin[index])
             nb_cycle += 1
     return (1 == (-1)**(n-nb_cycle)*(-1)**p)
 

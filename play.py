@@ -1,52 +1,96 @@
 import pygame
-import flet as ft
-from pygame.locals import QUIT, KEYDOWN, K_z, K_q, K_s, K_d
+import sys
 import random
 
-def draw_taquin(page: ft.Page, taquin):
-    page.clear()
-    
-    lis = [[i * 110, j * 110] for i in range(3) for j in range(3)]
+# Initialisation de Pygame
+pygame.init()
 
-    for i in range(9):
-        text_value = str(taquin[i])
-        text_height = 25
-        if taquin[i] != 0:
-            c = ft.Container(
-                ft.Text(str(taquin[i]), text_align=ft.TextAlign.CENTER, size=70),
-                width=100, height=100, bgcolor="blue", top=lis[i][0], left=lis[i][1]
+# Dimensions de la fenêtre
+WIDTH, HEIGHT = 300, 300
+
+# Couleurs
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+
+# Taille des cases
+CELL_SIZE = WIDTH // 3
+
+# Initialisation de la fenêtre
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Jeu du Taquin")
+
+
+# Données
+def creer_grille_aleatoire():
+    chiffres = list(range(1, 9))
+    random.shuffle(chiffres)
+    chiffres += [0]
+    grille_aleatoire = [chiffres[i : i + 3] for i in range(0, 9, 3)]
+    return grille_aleatoire
+
+
+grille_jeu = creer_grille_aleatoire()
+
+# Position de la case vide
+case_vide = (2, 2)
+
+
+# Fonction pour afficher la grille
+def afficher_grille():
+    screen.fill(WHITE)
+    font = pygame.font.Font(None, 36)
+
+    for i in range(3):
+        for j in range(3):
+            pygame.draw.rect(
+                screen, BLACK, (j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE), 2
             )
-            page.add(c)
 
-    page.update()
+            if grille_jeu[i][j] != 0:
+                text = font.render(str(grille_jeu[i][j]), True, BLACK)
+                text_rect = text.get_rect(
+                    center=(
+                        j * CELL_SIZE + CELL_SIZE // 2,
+                        i * CELL_SIZE + CELL_SIZE // 2,
+                    )
+                )
+                screen.blit(text, text_rect)
 
-def move_taquin(taquin, direction):
-    empty_position = taquin.index(0)
-    if direction == K_z and empty_position > 2:
-        taquin[empty_position], taquin[empty_position - 3] = taquin[empty_position - 3], taquin[empty_position]
-    elif direction == K_s and empty_position < 6:
-        taquin[empty_position], taquin[empty_position + 3] = taquin[empty_position + 3], taquin[empty_position]
-    elif direction == K_q and empty_position % 3 > 0:
-        taquin[empty_position], taquin[empty_position - 1] = taquin[empty_position - 1], taquin[empty_position]
-    elif direction == K_d and empty_position % 3 < 2:
-        taquin[empty_position], taquin[empty_position + 1] = taquin[empty_position + 1], taquin[empty_position]
 
-def main(page: ft.Page):
-    pygame.init()
-    taquin = [1, 2, 3, 4, 5, 6, 7, 8, 0]  # Configuration initiale
-    random.shuffle(taquin)  # Mélanger les nombres
+# Fonction pour déplacer la case vide
+def deplacer_case_vide(direction):
+    global case_vide
 
-    while True:
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                exit()
-            elif event.type == KEYDOWN:
-                direction = event.key
-                if direction in [K_z, K_q, K_s, K_d]:
-                    move_taquin(taquin, direction)
-                    draw_taquin(page, taquin)
+    i, j = case_vide
+    if direction == "UP" and i > 0:
+        grille_jeu[i][j], grille_jeu[i - 1][j] = grille_jeu[i - 1][j], grille_jeu[i][j]
+        case_vide = (i - 1, j)
+    elif direction == "DOWN" and i < 2:
+        grille_jeu[i][j], grille_jeu[i + 1][j] = grille_jeu[i + 1][j], grille_jeu[i][j]
+        case_vide = (i + 1, j)
+    elif direction == "LEFT" and j > 0:
+        grille_jeu[i][j], grille_jeu[i][j - 1] = grille_jeu[i][j - 1], grille_jeu[i][j]
+        case_vide = (i, j - 1)
+    elif direction == "RIGHT" and j < 2:
+        grille_jeu[i][j], grille_jeu[i][j + 1] = grille_jeu[i][j + 1], grille_jeu[i][j]
+        case_vide = (i, j + 1)
 
-        page.wait_for_event()
 
-ft.app(target=main)
+# Boucle principale
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                deplacer_case_vide("DOWN")
+            elif event.key == pygame.K_DOWN:
+                deplacer_case_vide("UP")
+            elif event.key == pygame.K_LEFT:
+                deplacer_case_vide("RIGHT")
+            elif event.key == pygame.K_RIGHT:
+                deplacer_case_vide("LEFT")
+
+    afficher_grille()
+    pygame.display.flip()

@@ -3,6 +3,9 @@ import solver2
 import pygame
 import sys
 import random_taquin
+import convert
+import find_neighbours
+from is_possible import is_possible
 
 # Initialisation of Pygame
 pygame.init()
@@ -14,15 +17,27 @@ WIDTH, HEIGHT = 300, 330
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
+
+# Taquin
+if len(sys.argv) > 1:
+    non_valid = True
+    taquin = sys.argv[1]
+    while non_valid:
+        tab = convert.from_str_to_tab(taquin)
+        zero = find_neighbours.find_zero(tab)
+        start = taquin, zero
+        non_valid = not is_possible(taquin, zero)
+        if non_valid:
+            print("Taquin impossible !")
+            taquin = input("Nouveau taquin:")
+
+else:  # random taquin
+    start = random_taquin.pick_random_taquin()
+path = solver2.solve(start, solver2.solution)
+
 # Screen initialisation
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Taquin Solver")
-
-
-# Taquin
-start = random_taquin.pick_random_taquin()
-path = solver2.solve(start, solver2.solution)
-
 
 
 def display(path, n):
@@ -40,7 +55,6 @@ def display(path, n):
     text = font.render(str(n + 1) + "/" + str(len(path)), True, BLACK)
     text_rect = text.get_rect(center=(150, 315))
     screen.blit(text, text_rect)
-
 
 
 n = 0
