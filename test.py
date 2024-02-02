@@ -5,7 +5,7 @@ def concatene(liste):
     for i in range(3):
         for j in range(3):
             if liste[i][j] == 0:
-                couple = (i +1 , j + 1)
+                couple = (i , j)
                 res += str(liste[i][j])
             else:
                 res += str(liste[i][j])
