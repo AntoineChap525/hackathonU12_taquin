@@ -36,11 +36,21 @@ def neighbours(taquin, coord):
         taqu2 = [row[:] for row in taquin]
         if i + s >= 0 and i + s < n:
             taqu2[i + s][j], taqu2[i][j] = taqu2[i][j], taqu2[i + s][j]
+<<<<<<< HEAD
             neigh.append([from_tab_to_str(taqu2),(i+s,j)])
+=======
+            zero = find_zero(taqu2)
+            neigh.append((from_tab_to_str(taqu2), zero))
+>>>>>>> 5bbe861ec7d36aaa914fe4d42f5bb270389af787
 
     for s in [-1, 1]:
         taqu2 = [row[:] for row in taquin]
         if j + s >= 0 and j + s < n:
             taqu2[i][j + s], taqu2[i][j] = taqu2[i][j], taqu2[i][j + s]
+<<<<<<< HEAD
             neigh.append([from_tab_to_str(taqu2),(i,j+s)])
+=======
+            zero = find_zero(taqu2)
+            neigh.append((from_tab_to_str(taqu2), zero))
+>>>>>>> 5bbe861ec7d36aaa914fe4d42f5bb270389af787
     return neigh
