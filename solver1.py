@@ -2,7 +2,7 @@ from collections import deque
 import numpy as np
 import find_neighbours
 
-start = ("123485760", (2, 2))
+start = ("087654321", (0, 0))
 solution = ("123456780", (2, 2))
 
 
@@ -16,8 +16,8 @@ def solve(start):
         if not nodes[actual_node][1]:  # if not dealt
             neighbours = find_neighbours.neighbours(actual_node[0], actual_node[1])
             for neighbour in neighbours:
-                if not neighbour in nodes:
-                    nodes[neighbour] = (nodes[actual_node][0] + 1, False, actual_node)
+                if (not neighbour in nodes) or neighbour[0] == solution[0]:
+                    nodes[neighbour] = [nodes[actual_node][0] + 1, False, actual_node]
                     queue.append(neighbour)
             nodes[actual_node][1] = True  # dealt node
 
@@ -37,6 +37,6 @@ def display(path):
         print(board[6:9])
         print("####")
 
+
 path = solve(start)
 display(path)
-
