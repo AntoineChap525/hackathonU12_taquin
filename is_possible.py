@@ -1,10 +1,11 @@
-def signature(taquin0):
+def is_possible(taquin0,coord):
 
     taquin = []
     for elt in taquin0:
         taquin += elt
-
-
+    a,b = coord
+    n = len(taquin0)
+    p = (2*n-2-a-b) % 2
     n = len(taquin)
     seen = [False] * n
     sign = 1
@@ -18,8 +19,8 @@ def signature(taquin0):
                 seen[index] = True
                 index = taquin[index]
             nb_cycle += 1
-    return ((-1)**(n-nb_cycle), seen)
+    return (1 == ((-1)**(n-nb_cycle)*(-1)**p, seen))
 
-print(signature([[0, 1], [3, 2, 4, 5]]))
+print(is_possible([[1,2,3],[4,5,6],[8,7,0]],(2,2)))
 
         
