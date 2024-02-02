@@ -40,7 +40,7 @@ def swap(chaine1, chaine2):
 
 def recherche(liste,element):
     for i in range(len(liste)):
-        if liste[i]==element:
+        if liste[i]== element:
             return i
     return ("Erreur")
 
