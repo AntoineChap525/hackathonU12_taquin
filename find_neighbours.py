@@ -1,6 +1,5 @@
 from math import sqrt
 
-
 def from_tab_to_str(tab):
     string = ""
     for elt in tab:
@@ -36,14 +35,14 @@ def neighbours(taquin, coord):
         taqu2 = [row[:] for row in taquin]
         if i + s >= 0 and i + s < n:
             taqu2[i + s][j], taqu2[i][j] = taqu2[i][j], taqu2[i + s][j]
-            zero = find_zero(taqu2)
-            neigh.append((from_tab_to_str(taqu2), zero))
+            neigh.append(from_tab_to_str(taqu2))
 
     for s in [-1, 1]:
         taqu2 = [row[:] for row in taquin]
         if j + s >= 0 and j + s < n:
             taqu2[i][j + s], taqu2[i][j] = taqu2[i][j], taqu2[i][j + s]
-            zero = find_zero(taqu2)
-            neigh.append((from_tab_to_str(taqu2), zero))
+            neigh.append(from_tab_to_str(taqu2))
     return neigh
 
+
+print(neighbours("123456780",(0,0)))
