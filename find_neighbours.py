@@ -1,5 +1,6 @@
 from math import sqrt
 
+
 def from_tab_to_str(tab):
     string = ""
     for elt in tab:
@@ -21,7 +22,7 @@ def find_zero(board: list):
     n = len(board)
     for i in range(n):
         for j in range(n):
-            if board[i][j] == '0':
+            if board[i][j] == "0":
                 couple = (i, j)
     return couple
 
@@ -35,12 +36,21 @@ def neighbours(taquin, coord):
         taqu2 = [row[:] for row in taquin]
         if i + s >= 0 and i + s < n:
             taqu2[i + s][j], taqu2[i][j] = taqu2[i][j], taqu2[i + s][j]
+<<<<<<< HEAD
             neigh.append([from_tab_to_str(taqu2),(i+s,j)])
+=======
+            zero = find_zero(taqu2)
+            neigh.append((from_tab_to_str(taqu2), zero))
+>>>>>>> f36b73f024c937f0f6c5674e540aa860c5890655
 
     for s in [-1, 1]:
         taqu2 = [row[:] for row in taquin]
         if j + s >= 0 and j + s < n:
             taqu2[i][j + s], taqu2[i][j] = taqu2[i][j], taqu2[i][j + s]
+<<<<<<< HEAD
             neigh.append([from_tab_to_str(taqu2),(i,j+s)])
+=======
+            zero = find_zero(taqu2)
+            neigh.append((from_tab_to_str(taqu2), zero))
+>>>>>>> f36b73f024c937f0f6c5674e540aa860c5890655
     return neigh
-

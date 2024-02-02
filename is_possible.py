@@ -21,6 +21,4 @@ def is_possible(taquin0,coord):
             nb_cycle += 1
     return (1 == (-1)**(n-nb_cycle)*(-1)**p)
 
-print(is_possible([[1,2,3],[4,5,6],[7,8,0]],(2,2)))
-
         

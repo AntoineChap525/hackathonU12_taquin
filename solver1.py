@@ -6,7 +6,7 @@ start = ("087654321", (0, 0))
 solution = ("123456780", (2, 2))
 
 
-def solve(start):
+def solve(start, solution):
     # node : [distance to start, is dealt, previous node]
     nodes = {start: [0, False, None], solution: [np.inf, False, None]}
     queue = deque([start])
