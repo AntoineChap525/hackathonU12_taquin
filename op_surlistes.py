@@ -3,28 +3,28 @@
 #une fonction qui concatène les éléments d'une liste de taille 3*3 et les transforme en string,
 #et renvoie aussi le couple qui donne les coordonnées du 0
 
+# def concatene(liste):
+#     res = ""
+#     for i in range(3):
+#         for j in range(3):
+#             if liste[i][j] == 0:
+#                 couple = (i , j)
+#                 res += str(liste[i][j])
+#             else:
+#                 res += str(liste[i][j])
+#     return res, couple
+
+# print(concatene([[1, 2, 3], [4, 0, 5], [6, 7, 8]]))
+
+
+
 def concatene(liste):
-    res = ""
-    for i in range(3):
-        for j in range(3):
-            if liste[i][j] == 0:
-                couple = (i +1 , j + 1)
-                res += str(liste[i][j])
-            else:
-                res += str(liste[i][j])
-    return res, couple
-
-print(concatene([[1, 2, 3], [4, 0, 5], [6, 7, 8]]))
-
-
-
-def concatene9(liste):
     chaine = ""
     for i in range(len(liste)):
         chaine += str(liste[i])
-    return chaine
+    return chaine, (liste.index(0)//3, liste.index(0)%3)
 
-print(concatene9([1, 2, 3, 0, 4, 5, 6]))
+#print(concatene([1, 2, 3, 0, 4, 5, 6, 8, 7]))
 
 
 #une fonction qui prend en argument deux chaines de caractères (0, 1 à 8) 
@@ -36,5 +36,11 @@ def swap(chaine1, chaine2):
         if chaine1[i] != chaine2[i] and chaine2[i] != "0" :
             return chaine2[i], i, chaine1.index(chaine2[i])
 
-print(swap("123450786", "123456780"))
+#print(swap("123450786", "123456780"))
+
+def recherche(liste,element):
+    for i in range(len(liste)):
+        if liste[i]==element:
+            return i
+    return ("Erreur")
 
