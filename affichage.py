@@ -23,11 +23,14 @@ def main(page: ft.Page):
     r = []
 
 
-    for i in range(0,9):
-        if liste[i]==0:
-            c = ft.Container(ft.Text(liste[i], text_align=ft.TextAlign.CENTER), width=100, height=100, bgcolor="red", top=lis[i][0], left=lis[i][1])
+    r = []
+    for i in range(0, 9):
+        text_value = str(liste[i])
+        text_height = 25
+        if liste[i] == 0:
+            c = ft.Container(ft.Text(str(liste[i]), text_align=ft.TextAlign.CENTER, size=70), width=100, height=100, bgcolor="red", top=lis[i][0], left=lis[i][1])
         else:
-            c = ft.Container(ft.Text(liste[i], text_align=ft.TextAlign.CENTER), width=100, height=100, bgcolor="blue", top=lis[i][0], left=lis[i][1])
+            c = ft.Container(ft.Text(str(liste[i]), text_align=ft.TextAlign.CENTER, size=70), width=100, height=100, bgcolor="blue", top=lis[i][0], left=lis[i][1])
         r.append(c)
 
     #print(r)

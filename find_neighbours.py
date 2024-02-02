@@ -45,4 +45,4 @@ def neighbours(taquin, coord):
     return neigh
 
 
-print(neighbours("123456780",(0,0)))
+print(neighbours("123456780",(2,2)))
