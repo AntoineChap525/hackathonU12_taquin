@@ -21,18 +21,13 @@ def neighbours(taquin, coord):
     neigh = []
     for s in [-1, 1]:
         taqu2 = [row[:] for row in taquin]
-        try:
-            a = 1 / (i + s + 1)
+        if i+s >= 0 and i+s < n:
             taqu2[i + s][j], taqu2[i][j] = taqu2[i][j], taqu2[i + s][j]
             neigh.append(from_tab_to_str(taqu2))
-        except ZeroDivisionError:
-            pass
+
     for s in [-1, 1]:
         taqu2 = [row[:] for row in taquin]
-        try:
-            a = 1 / (j + s + 1)
+        if j+s >= 0 and j+s < n:
             taqu2[i][j + s], taqu2[i][j] = taqu2[i][j], taqu2[i][j + s]
             neigh.append(from_tab_to_str(taqu2))
-        except ZeroDivisionError:
-            pass
     return neigh
