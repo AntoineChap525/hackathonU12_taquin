@@ -16,7 +16,7 @@ def from_str_to_tab(string):
     return tab
 
 def neighbours(taquin, coord):
-    
+    taquin = from_str_to_tab(taquin)
     i, j = coord
     neigh = []
     for s in [-1, 1]:
