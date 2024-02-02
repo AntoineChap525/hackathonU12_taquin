@@ -4,9 +4,10 @@ import find_neighbours
 
 start = ("087654321", (0, 0))
 solution = ("123456780", (2, 2))
-
+chgt = 0
 
 def solve(start, solution):
+    global chgt
     # node : [distance to start, is dealt, previous node]
     nodes = {start: [0, False, None], solution: [np.inf, False, None]}
     queue = deque([start])
@@ -14,6 +15,7 @@ def solve(start, solution):
     while not nodes[solution][1]:
         actual_node = queue.popleft()
         if not nodes[actual_node][1]:  # if not dealt
+            chgt +=1
             neighbours = find_neighbours.neighbours(actual_node[0], actual_node[1])
             for neighbour in neighbours:
                 if (not neighbour in nodes) or neighbour[0] == solution[0]:

@@ -76,6 +76,3 @@ def display(path):
         print(board[3:6])
         print(board[6:9])
         print("####")
-
-
-print(solve(start,solution))
