@@ -1,0 +1,40 @@
+from math import sqrt
+
+def from_tab_to_str(tab):
+    string = ""
+    for elt in tab:
+        for number in elt:
+            string += str(number)
+    return string
+
+def from_str_to_tab(string):
+    n = int(sqrt(len(string)))
+    tab = [[None]*n for _ in range(n)]
+    for j in range(n):
+        tab[i][j] = string[n*i + j]
+    return tab
+
+def neighbours(taquin, coord):
+    i, j = coord
+    neigh = []
+    for s in [-1, 1]:
+        taqu2 = [row[:] for row in taquin]  # Utilisez cette approche pour créer une copie complète
+        try:
+            a = 1 / (i + s + 1)
+            taqu2[i + s][j], taqu2[i][j] = taqu2[i][j], taqu2[i + s][j]
+            print(taqu2)
+            neigh.append(from_tab_to_str(taqu2))
+        except ZeroDivisionError:
+            pass
+    for s in [-1, 1]:
+        taqu2 = [row[:] for row in taquin]  # Utilisez cette approche pour créer une copie complète
+        try:
+            a = 1 / (j + s + 1)
+            taqu2[i][j + s], taqu2[i][j] = taqu2[i][j], taqu2[i][j + s]
+            print(taqu2)
+            neigh.append(from_tab_to_str(taqu2))
+        except ZeroDivisionError:
+            pass
+    return neigh
+
+print(neighbours([[1, 0, 2], [3, 8, 4], [5, 6, 7]], (0, 1)))
