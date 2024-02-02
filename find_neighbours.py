@@ -44,5 +44,3 @@ def neighbours(taquin, coord):
             neigh.append([from_tab_to_str(taqu2),(i,j+s)])
     return neigh
 
-
-print(neighbours("123456780",(2,2)))
