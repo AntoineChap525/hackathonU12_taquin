@@ -46,3 +46,4 @@ def neighbours(taquin, coord):
             zero = find_zero(taqu2)
             neigh.append((from_tab_to_str(taqu2), zero))
     return neigh
+
